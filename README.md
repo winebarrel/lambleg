@@ -9,7 +9,7 @@ var Lambleg = require('lambleg');
 
 var lambleg = new Lambleg({
   region: 'us-east-1',
-  Role: 'arn:aws:iam::822997939312:role/lambda_exec_role'
+  Role: 'arn:aws:iam::123456789012:role/lambda_exec_role'
 });
 
 var callback = function() {
