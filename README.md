@@ -12,17 +12,19 @@ var lambleg = new Lambleg({
   Role: 'arn:aws:iam::822997939312:role/lambda_exec_role'
 });
 
-lambleg.create('test', function(event, context) {
+var callback = function() {
+  lambleg.myfunc({key: 'value'});
+}
+
+lambleg.create('myfunc', function(event, context) {
   console.log(event);
   context.done();
-});
-
-lambleg.test({key:'value'});
+}, callback);
 ```
 
 ```
-START RequestId: f333d248-7c8d-11e4-9d14-b5ee9efba728
-2014-12-05T14:50:12.756Z  f333d248-7c8d-11e4-9d14-b5ee9efba728  { key: 'value' }
-END RequestId: f333d248-7c8d-11e4-9d14-b5ee9efba728
-REPORT RequestId: f333d248-7c8d-11e4-9d14-b5ee9efba728  Duration: 101.57 ms Billed Duration: 200 ms   Memory Size: 128 MB Max Memory Used: 9 MB
+START RequestId: 4095d240-7c91-11e4-8c62-01d86d138b00
+END RequestId: 4095d240-7c91-11e4-8c62-01d86d138b00
+2014-12-05T15:12:58.596Z  4095d240-7c91-11e4-8c62-01d86d138b00  { key: 'value' }
+REPORT RequestId: 4095d240-7c91-11e4-8c62-01d86d138b00  Duration: 62.26 ms  Billed Duration: 100 ms   Memory Size: 128 MB Max Memory Used: 9 MB
 ```
