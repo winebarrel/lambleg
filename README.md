@@ -13,10 +13,10 @@ var lambleg = new Lambleg({
   QueueUrl: 'https://sqs.ap-northeast-1.amazonaws.com/123456789012/myqueue'
 });
 
-var lambda_func = lambleg.lambda(function(event, callback) {
+var lambda_func = lambleg.lambda(function(args, callback) {
   // Running on AWS Lambda
-  console.log(event);
-  callback({from_lambda:event});
+  console.log(args);
+  callback({from_lambda:args});
 });
 
 lambda_func({key: "val"}, function(retval) {
