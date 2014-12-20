@@ -9,30 +9,18 @@ var Lambleg = require('lambleg');
 
 var lambleg = new Lambleg({
   region: 'us-east-1',
-  Role: 'arn:aws:iam::123456789012:role/lambda_exec_role'
+  Role: 'arn:aws:iam::123456789012:role/lambda_exec_role',
+  QueueUrl: 'https://sqs.ap-northeast-1.amazonaws.com/123456789012/myqueue'
 });
 
-var callback = function() {
-  lambleg.myfunc({key: 'value'});
-}
-
-lambleg.create('myfunc', function(event, context) {
+var lambda_func = lambleg.lambda(function(event, callback) {
+  // Running on AWS Lambda
   console.log(event);
-  context.done();
-}, callback);
-```
+  callback({from_lambda:event});
+});
 
-```
-START RequestId: 4095d240-7c91-11e4-8c62-01d86d138b00
-END RequestId: 4095d240-7c91-11e4-8c62-01d86d138b00
-2014-12-05T15:12:58.596Z  4095d240-7c91-11e4-8c62-01d86d138b00  { key: 'value' }
-REPORT RequestId: 4095d240-7c91-11e4-8c62-01d86d138b00  Duration: 62.26 ms  Billed Duration: 100 ms   Memory Size: 128 MB Max Memory Used: 9 MB
-```
-
-## define JS function only
-
-```js
-lambleg.define('myfunc');
-
-lambleg.myfunc({key: 'value'});
+lambda_func({key: "val"}, function(retval) {
+  console.log(retval); // { from_lambda: { key: 'val' } }
+  lambleg.cleanup();
+});
 ```

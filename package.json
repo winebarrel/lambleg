@@ -1,11 +1,13 @@
 {
   "name": "lambleg",
-  "version": "0.1.2",
-  "description": "Node module for create/invoke JavaScript function as AWS Lambda function",
+  "version": "0.2.0",
+  "description": "Node module for invoke JavaScript function on AWS Lambda",
   "main": "index.js",
   "dependencies": {
     "aws-sdk": "^2.0.30",
-    "jszip": "^2.4.0"
+    "jszip": "^2.4.0",
+    "node-uuid": "^1.4.2",
+    "sleep-async": "^1.0.1"
   },
   "devDependencies": {},
   "scripts": {
