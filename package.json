@@ -1,6 +1,6 @@
 {
   "name": "lambleg",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Node module for invoke JavaScript function on AWS Lambda",
   "main": "index.js",
   "dependencies": {
