@@ -21,6 +21,9 @@ var lambda_func = lambleg.lambda(function(args, callback) {
 
 lambda_func({key: "val"}, function(retval) {
   console.log(retval); // { from_lambda: { key: 'val' } }
-  lambleg.cleanup();
+
+  lambleg.cleanup(function() {
+    // any code
+  });
 });
 ```
